@@ -10,9 +10,14 @@ using System.Windows.Forms;
 
 namespace tic_tac_toe {
     public partial class Form1 : Form {
+        private GameGrid gameGrid;
         public Form1() {
             InitializeComponent();
+            gameGrid = new GameGrid(gameBoard);
         }
 
+        private void gameBoard_Paint(object sender, PaintEventArgs e) {
+            gameGrid.Draw();
+        }
     }
 }
