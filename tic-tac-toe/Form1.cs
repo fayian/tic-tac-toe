@@ -11,13 +11,19 @@ using System.Windows.Forms;
 namespace tic_tac_toe {
     public partial class Form1 : Form {
         private GameGrid gameGrid;
+
         public Form1() {
             InitializeComponent();
-            gameGrid = new GameGrid(gameBoard);
+            gameGrid = new GameGrid(canvas);
         }
 
-        private void gameBoard_Paint(object sender, PaintEventArgs e) {
+        private void canvas_Paint(object sender, PaintEventArgs e) {
             gameGrid.Draw();
+            gameoverLabel.Text = "Test\n123";
+        }
+
+        private void canvas_MouseUp(object sender, MouseEventArgs e) {
+            gameGrid.Put(e.X / gameGrid.CellWidth(), e.Y / gameGrid.CellHeight());
         }
     }
 }

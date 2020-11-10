@@ -24,28 +24,41 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.gameBoard = new System.Windows.Forms.Panel();
+            this.canvas = new System.Windows.Forms.Panel();
+            this.gameoverLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // gameBoard
+            // canvas
             // 
-            resources.ApplyResources(this.gameBoard, "gameBoard");
-            this.gameBoard.Name = "gameBoard";
-            this.gameBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.gameBoard_Paint);
+            resources.ApplyResources(this.canvas, "canvas");
+            this.canvas.Name = "canvas";
+            this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
+            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
+            // 
+            // gameoverLabel
+            // 
+            resources.ApplyResources(this.gameoverLabel, "gameoverLabel");
+            this.gameoverLabel.ForeColor = System.Drawing.Color.Red;
+            this.gameoverLabel.Name = "gameoverLabel";
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gameBoard);
+            this.Controls.Add(this.gameoverLabel);
+            this.Controls.Add(this.canvas);
             this.Name = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel gameBoard;
+        private System.Windows.Forms.Panel canvas;
+        private System.Windows.Forms.Label gameover;
+        private System.Windows.Forms.Label gameoverText;
+        private System.Windows.Forms.Label gameoverLabel;
     }
 }
 

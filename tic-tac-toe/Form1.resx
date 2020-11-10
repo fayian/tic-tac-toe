@@ -58,26 +58,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="gameBoard.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+  <data name="canvas.Location" type="System.Drawing.Point, System.Drawing.Primitives">
     <value>38, 30</value>
   </data>
-  <data name="gameBoard.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+  <data name="canvas.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>400, 400</value>
   </data>
   <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-  <data name="gameBoard.TabIndex" type="System.Int32, System.Private.CoreLib">
+  <data name="canvas.TabIndex" type="System.Int32, System.Private.CoreLib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;gameBoard.Name" xml:space="preserve">
-    <value>gameBoard</value>
+  <data name="&gt;&gt;canvas.Name" xml:space="preserve">
+    <value>canvas</value>
   </data>
-  <data name="&gt;&gt;gameBoard.Type" xml:space="preserve">
+  <data name="&gt;&gt;canvas.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gameBoard.Parent" xml:space="preserve">
+  <data name="&gt;&gt;canvas.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;gameBoard.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;canvas.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gameoverLabel.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="gameoverLabel.Font" type="System.Drawing.Font, System.Drawing.Common">
+    <value>Microsoft JhengHei UI, 15pt</value>
+  </data>
+  <data name="gameoverLabel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>471, 330</value>
+  </data>
+  <data name="gameoverLabel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>135, 32</value>
+  </data>
+  <data name="gameoverLabel.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="gameoverLabel.Text" xml:space="preserve">
+    <value>Gameover</value>
+  </data>
+  <data name="&gt;&gt;gameoverLabel.Name" xml:space="preserve">
+    <value>gameoverLabel</value>
+  </data>
+  <data name="&gt;&gt;gameoverLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gameoverLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gameoverLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
