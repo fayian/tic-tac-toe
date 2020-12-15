@@ -15,15 +15,21 @@ namespace tic_tac_toe {
         public Form1() {
             InitializeComponent();
             gameGrid = new GameGrid(canvas);
+            gameGrid.Gameover += gameGrid_Gameover;
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e) {
-            gameGrid.Draw();
-            gameoverLabel.Text = "Test\n123";
+            gameGrid.Draw(e.Graphics);
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e) {
             gameGrid.Put(e.X / gameGrid.CellWidth(), e.Y / gameGrid.CellHeight());
+        }
+
+        private void gameGrid_Gameover(object sender, GameoverEventArgs e) {
+            if (e.Winner == Player.O) gameoverLabel.Text = "Gameover\nO wins!!";
+            else gameoverLabel.Text = "Gameover\nX wins!!";
+            gameoverLabel.Visible = true;
         }
     }
 }

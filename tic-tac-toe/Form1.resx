@@ -99,6 +99,9 @@
   <data name="gameoverLabel.Text" xml:space="preserve">
     <value>Gameover</value>
   </data>
+  <data name="gameoverLabel.Visible" type="System.Boolean, System.Private.CoreLib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;gameoverLabel.Name" xml:space="preserve">
     <value>gameoverLabel</value>
   </data>
