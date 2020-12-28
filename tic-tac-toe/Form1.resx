@@ -78,12 +78,12 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;canvas.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="gameoverLabel.AutoSize" type="System.Boolean, System.Private.CoreLib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   <data name="gameoverLabel.Font" type="System.Drawing.Font, System.Drawing.Common">
     <value>Microsoft JhengHei UI, 15pt</value>
   </data>
@@ -112,6 +112,33 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gameoverLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="restart.Font" type="System.Drawing.Font, System.Drawing.Common">
+    <value>Calibri, 12pt</value>
+  </data>
+  <data name="restart.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>481, 30</value>
+  </data>
+  <data name="restart.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>125, 47</value>
+  </data>
+  <data name="restart.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="restart.Text" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="&gt;&gt;restart.Name" xml:space="preserve">
+    <value>restart</value>
+  </data>
+  <data name="&gt;&gt;restart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;restart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;restart.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">

@@ -19,22 +19,21 @@ namespace tic_tac_toe {
         private const int WIN_CONDITION = 3;
 
         private Panel canvas;
-        private Pen pen = new Pen(Color.Black, 2);
         private int cellCount = 3;
         private List<List<Player>> gameBoard;
 
         public Player currentPlayer = Player.O;        
 
         public delegate void GameoverEventHandler(object sender, GameoverEventArgs e);
-        public event GameoverEventHandler Gameover;
+        public event GameoverEventHandler Gameover;       
 
-        private void DrawCircle(int cellX, int cellY, Graphics g) {
+        private void DrawCircle(int cellX, int cellY, Pen pen, Graphics g) {
             int marginX = Math.Max(1, CellWidth() / MARGIN_COEFFICIENT);
             int marginY = Math.Max(1, CellHeight() / MARGIN_COEFFICIENT);
             g.DrawEllipse(pen, cellX * CellWidth() + marginX, cellY * CellHeight() + marginY,
                                                  CellWidth() - 2 * marginX, CellHeight() - 2 * marginY);
         }
-        private void DrawCross(int cellX, int cellY, Graphics g) {
+        private void DrawCross(int cellX, int cellY, Pen pen, Graphics g) {
             int marginX = Math.Max(1, CellWidth() / MARGIN_COEFFICIENT);
             int marginY = Math.Max(1, CellHeight() / MARGIN_COEFFICIENT);
             int left = CellWidth() * cellX + marginX;
@@ -62,36 +61,35 @@ namespace tic_tac_toe {
             int cellWidth = canvas.Size.Width / cellCount;
             int cellHeight = canvas.Size.Height / cellCount;
 
-            //draw grid
-            for (int i = 0; i <= cellCount; i++) {
-                g.DrawLine(pen, 0, cellHeight * i, canvas.Size.Width, cellHeight * i); //horizontal
-                g.DrawLine(pen, cellWidth * i, 0, cellWidth * i, canvas.Size.Height); //vertical
-            }
-
-            //draw O and X            
-            for (int x = 0; x < gameBoard.Count; x++) {
-                for (int y = 0; y < gameBoard.Count; y++) {
-                    if(gameBoard[x][y] != Player.NONE) {
-                        if (gameBoard[x][y] == Player.X) DrawCross(x, y, g);
-                        else DrawCircle(x, y, g);
-                    }
+            using (Pen pen = new Pen(Color.Black, 2)) {
+                //draw grid
+                for (int i = 0; i <= cellCount; i++) {
+                    g.DrawLine(pen, 0, cellHeight * i, canvas.Size.Width, cellHeight * i); //horizontal
+                    g.DrawLine(pen, cellWidth * i, 0, cellWidth * i, canvas.Size.Height); //vertical
                 }
+                
+                //draw O and X            
+                for (int x = 0; x < gameBoard.Count; x++) {
+                    for (int y = 0; y < gameBoard.Count; y++) {
+                        if (gameBoard[x][y] != Player.NONE) {
+                            if (gameBoard[x][y] == Player.X) DrawCross(x, y, pen, g);
+                            else DrawCircle(x, y, pen, g);
+                        }
+                    }
+                }                
             }
         }
     
         // put on the xth cell counting from left to right
         //                     yth cell counting from top to bottom
         public void Put(int cellX, int cellY) {
-            if(gameBoard[cellX][cellY] == Player.NONE) {
-                using (Graphics g = canvas.CreateGraphics()) {
-                    if (currentPlayer == Player.O) {
-                        DrawCircle(cellX, cellY, g);
-                        gameBoard[cellX][cellY] = Player.O;                        
-                    } else {
-                        DrawCross(cellX, cellY, g);
-                        gameBoard[cellX][cellY] = Player.X;
-                    }
+            if(gameBoard[cellX][cellY] == Player.NONE) {                
+                if (currentPlayer == Player.O) {
+                    gameBoard[cellX][cellY] = Player.O;
+                } else {
+                    gameBoard[cellX][cellY] = Player.X;
                 }
+                canvas.Invalidate(new Rectangle(cellX * CellWidth(), cellY * CellHeight(), CellWidth(), CellHeight()));
 
                 //check if the player wins
                 byte possiblility = 0xFF;
@@ -110,7 +108,6 @@ namespace tic_tac_toe {
                     }
                 }
                 if (possiblility != 0) Gameover?.Invoke(this, new GameoverEventArgs(currentPlayer));
-
 
                 //switch current player
                 if (currentPlayer == Player.O) currentPlayer = Player.X;

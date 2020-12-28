@@ -26,6 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.canvas = new System.Windows.Forms.Panel();
             this.gameoverLabel = new System.Windows.Forms.Label();
+            this.restart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // canvas
@@ -41,10 +42,18 @@
             this.gameoverLabel.ForeColor = System.Drawing.Color.Red;
             this.gameoverLabel.Name = "gameoverLabel";
             // 
+            // restart
+            // 
+            resources.ApplyResources(this.restart, "restart");
+            this.restart.Name = "restart";
+            this.restart.UseVisualStyleBackColor = true;
+            this.restart.Click += new System.EventHandler(this.restart_Click);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.restart);
             this.Controls.Add(this.gameoverLabel);
             this.Controls.Add(this.canvas);
             this.Name = "Form1";
@@ -59,6 +68,7 @@
         private System.Windows.Forms.Label gameover;
         private System.Windows.Forms.Label gameoverText;
         private System.Windows.Forms.Label gameoverLabel;
+        private System.Windows.Forms.Button restart;
     }
 }
 

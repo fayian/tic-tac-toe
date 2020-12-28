@@ -9,13 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace tic_tac_toe {
+    enum GameStatus { PAUSE, PLAY }
+
     public partial class Form1 : Form {
         private GameGrid gameGrid;
+        private GameStatus gameStatus = GameStatus.PAUSE;
 
         public Form1() {
             InitializeComponent();
             gameGrid = new GameGrid(canvas);
             gameGrid.Gameover += gameGrid_Gameover;
+            gameStatus = GameStatus.PLAY;
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e) {
@@ -23,13 +27,28 @@ namespace tic_tac_toe {
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e) {
-            gameGrid.Put(e.X / gameGrid.CellWidth(), e.Y / gameGrid.CellHeight());
+            if (gameStatus == GameStatus.PLAY) {
+                gameGrid.Put(e.X / gameGrid.CellWidth(), e.Y / gameGrid.CellHeight());
+            }
         }
 
-        private void gameGrid_Gameover(object sender, GameoverEventArgs e) {
-            if (e.Winner == Player.O) gameoverLabel.Text = "Gameover\nO wins!!";
+        private void restart_Click(object sender, EventArgs e) {
+            gameStatus = GameStatus.PAUSE;
+
+            gameoverLabel.Visible = false;
+            gameGrid = new GameGrid(canvas);
+            gameGrid.Gameover += gameGrid_Gameover;
+            canvas.Invalidate();
+
+            gameStatus = GameStatus.PLAY;
+        }
+
+        private void gameGrid_Gameover(object sender, GameoverEventArgs e) {          
+            gameStatus = GameStatus.PAUSE;
+            if (e.Winner == Player.O) gameoverLabel.Text = "Gameover\nO wins!!";            
             else gameoverLabel.Text = "Gameover\nX wins!!";
             gameoverLabel.Visible = true;
         }
+
     }
 }
