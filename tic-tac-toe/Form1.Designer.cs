@@ -27,6 +27,7 @@
             this.canvas = new System.Windows.Forms.Panel();
             this.gameoverLabel = new System.Windows.Forms.Label();
             this.restart = new System.Windows.Forms.Button();
+            this.evaluationResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // canvas
@@ -49,10 +50,16 @@
             this.restart.UseVisualStyleBackColor = true;
             this.restart.Click += new System.EventHandler(this.restart_Click);
             // 
+            // evaluationResult
+            // 
+            resources.ApplyResources(this.evaluationResult, "evaluationResult");
+            this.evaluationResult.Name = "evaluationResult";
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.evaluationResult);
             this.Controls.Add(this.restart);
             this.Controls.Add(this.gameoverLabel);
             this.Controls.Add(this.canvas);
@@ -69,6 +76,7 @@
         private System.Windows.Forms.Label gameoverText;
         private System.Windows.Forms.Label gameoverLabel;
         private System.Windows.Forms.Button restart;
+        private System.Windows.Forms.Label evaluationResult;
     }
 }
 

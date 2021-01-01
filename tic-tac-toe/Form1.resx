@@ -78,7 +78,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;canvas.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="gameoverLabel.AutoSize" type="System.Boolean, System.Private.CoreLib">
     <value>True</value>
@@ -112,7 +112,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gameoverLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="restart.Font" type="System.Drawing.Font, System.Drawing.Common">
     <value>Calibri, 12pt</value>
@@ -139,6 +139,36 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;restart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="evaluationResult.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="evaluationResult.Font" type="System.Drawing.Font, System.Drawing.Common">
+    <value>Calibri, 12pt</value>
+  </data>
+  <data name="evaluationResult.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>481, 139</value>
+  </data>
+  <data name="evaluationResult.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>61, 24</value>
+  </data>
+  <data name="evaluationResult.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="evaluationResult.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;evaluationResult.Name" xml:space="preserve">
+    <value>evaluationResult</value>
+  </data>
+  <data name="&gt;&gt;evaluationResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;evaluationResult.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;evaluationResult.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">

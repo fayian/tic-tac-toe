@@ -16,13 +16,14 @@ namespace tic_tac_toe {
 
     class GameGrid {
         private const int MARGIN_COEFFICIENT = 8;
-        private const int WIN_CONDITION = 3;
+        internal const int WIN_CONDITION = 3;
 
         private Panel canvas;
         private int cellCount = 3;
-        private List<List<Player>> gameBoard;
+        internal List<List<Player>> gameBoard;
 
-        public Player currentPlayer = Player.O;        
+        
+        /*private*/internal Player currentPlayer = Player.O;        
 
         public delegate void GameoverEventHandler(object sender, GameoverEventArgs e);
         public event GameoverEventHandler Gameover;       

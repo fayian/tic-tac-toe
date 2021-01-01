@@ -14,11 +14,15 @@ namespace tic_tac_toe {
     public partial class Form1 : Form {
         private GameGrid gameGrid;
         private GameStatus gameStatus = GameStatus.PAUSE;
+        AI playerO, playerX;
 
         public Form1() {
             InitializeComponent();
             gameGrid = new GameGrid(canvas);
             gameGrid.Gameover += gameGrid_Gameover;
+            playerO = new AI(Player.O, GameGrid.WIN_CONDITION, gameGrid.gameBoard);
+            playerX = new AI(Player.X, GameGrid.WIN_CONDITION, gameGrid.gameBoard);
+
             gameStatus = GameStatus.PLAY;
         }
 
@@ -29,6 +33,8 @@ namespace tic_tac_toe {
         private void canvas_MouseUp(object sender, MouseEventArgs e) {
             if (gameStatus == GameStatus.PLAY) {
                 gameGrid.Put(e.X / gameGrid.CellWidth(), e.Y / gameGrid.CellHeight());
+                evaluationResult.Text = "O: " + playerO.Evaluate(gameGrid.gameBoard, gameGrid.currentPlayer) + "\n" +
+                    "X: " + playerX.Evaluate(gameGrid.gameBoard, gameGrid.currentPlayer);
             }
         }
 
