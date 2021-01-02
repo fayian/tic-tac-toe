@@ -91,23 +91,49 @@ namespace tic_tac_toe {
                 }
                 canvas.Invalidate(new Rectangle(cellX * CellWidth(), cellY * CellHeight(), CellWidth(), CellHeight()));
 
-                //check if the player wins
-                byte possiblility = 0xFF;
-                //start from top, clockwise
-                sbyte[] deltaX = { 0, 1, 1,  1,  0, -1, -1, -1 };
-                sbyte[] deltaY = { 1, 1, 0, -1, -1, -1,  0,  1 };
-                for (int i = 1; i < WIN_CONDITION; i++) {
-                    for(byte bin = 0x1, j = 0; j < 8; bin <<= 1, j++) {
-                        if ((possiblility & bin) != 0) {
-                            if (cellX + i * deltaX[j] >= cellCount || cellX + i * deltaX[j] < 0 ||
-                                 cellY + i * deltaY[j] >= cellCount || cellY + i * deltaY[j] < 0)
-                                possiblility ^= bin;
-                            else if (gameBoard[ cellX + i * deltaX[j] ][ cellY + i * deltaY[j] ] != currentPlayer)
-                                possiblility ^= bin;
+                //check if the player wins                
+                int length;
+                int x, y;
+
+                sbyte[] deltaX = { 0, 1,  1, 1 };
+                sbyte[] deltaY = { 1, 0, -1, 1 };
+                //[0]: vertical
+                //[1]: horizontal
+                //[2]: top-left to bot-right
+                //[3]: top-right to bot-left                
+
+                for(int i = 0; i < 4; i++) {
+                    length = 0;
+                    for(int j = 1, k = 1; j <= WIN_CONDITION && j != -1 || k <= WIN_CONDITION && k != -1;) {
+                        if(j != -1) {
+                            x = cellX + deltaX[i] * j;
+                            y = cellY + deltaY[i] * j;
+                            if(x >= 0 && x < cellCount && y >= 0 && y < cellCount && gameBoard[x][y] == currentPlayer) {
+                                length++;
+                                j++;
+                            } else {
+                                j = -1;
+                            }
+                        }
+
+                        if (k != -1) {
+                            x = cellX - deltaX[i] * k;
+                            y = cellY - deltaY[i] * k;
+                            if (x >= 0 && x < cellCount && y >= 0 && y < cellCount && gameBoard[x][y] == currentPlayer) {
+                                length++;
+                                k++;
+                            } else {
+                                k = -1;
+                            }
                         }
                     }
+
+                    if (length + 1 >= WIN_CONDITION) {
+                        Gameover?.Invoke(this, new GameoverEventArgs(currentPlayer));
+                        break;
+                    }
                 }
-                if (possiblility != 0) Gameover?.Invoke(this, new GameoverEventArgs(currentPlayer));
+                
 
                 //switch current player
                 if (currentPlayer == Player.O) currentPlayer = Player.X;
