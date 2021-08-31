@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 
 namespace tic_tac_toe {
-    enum Player { NONE, O, X };
+    public enum Player { NONE, O, X };
 
     class GameoverEventArgs {
         public Player  Winner { get; }
@@ -22,8 +22,8 @@ namespace tic_tac_toe {
         private Panel canvas;
         internal List<List<Player>> gameBoard;
         private int movesLeft = CELL_COUNT* CELL_COUNT;
-        
-        /*private*/internal Player currentPlayer = Player.O;    
+
+       public Player currentPlayer { get; private set; }
 
         public delegate void GameoverEventHandler(object sender, GameoverEventArgs e);
         public event GameoverEventHandler Gameover;
@@ -46,8 +46,9 @@ namespace tic_tac_toe {
             g.DrawLine(pen, left, bottom, right, top);
         }
 
-        public GameGrid(Panel canvas) {
+        public GameGrid(Player startingPlayer, Panel canvas) {
             this.canvas = canvas;
+            currentPlayer = startingPlayer;
 
             gameBoard = new List<List<Player>>(CELL_COUNT);
             for (int i = 0; i < CELL_COUNT; i++) gameBoard.Add(new List<Player>(CELL_COUNT));

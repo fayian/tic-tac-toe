@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace tic_tac_toe {
     enum GameStatus { PAUSE, PLAY }
@@ -14,17 +15,39 @@ namespace tic_tac_toe {
     public partial class Form1 : Form {
         private GameGrid gameGrid;
         private GameStatus gameStatus = GameStatus.PAUSE;
-        AI playerO, playerX;
+        private Player startingPlayer;
+        private bool OisAI, XisAI;
+        private AI playerO, playerX;
 
-        public Form1() {
+        public Form1(bool OisAI, bool XisAI, Player startingPlayer) {
             InitializeComponent();
-            gameGrid = new GameGrid(canvas);
+
+            this.startingPlayer = startingPlayer;
+            gameGrid = new GameGrid(startingPlayer, canvas);
+            this.OisAI = OisAI;
+            this.XisAI = XisAI;
+
             gameGrid.Gameover += gameGrid_Gameover;
             gameGrid.SwitchPlayer += gameGrid_SwitchPlayer;
+
             playerO = new AI(Player.O, gameGrid);
             playerX = new AI(Player.X, gameGrid);
 
-            gameStatus = GameStatus.PLAY;            
+            gameStatus = GameStatus.PLAY;
+
+            if (gameGrid.currentPlayer == Player.O && OisAI) {
+                KeyValuePair<int, int> temp = playerO.Move();
+                if (temp.Key != -1 && temp.Value != -1) {
+                    gameGrid.Put(temp.Key, temp.Value);
+                }
+            }
+
+            if (gameGrid.currentPlayer == Player.X && XisAI) {
+                KeyValuePair<int, int> temp = playerX.Move();
+                if (temp.Key != -1 && temp.Value != -1) {
+                    gameGrid.Put(temp.Key, temp.Value);
+                }
+            }
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e) {
@@ -44,7 +67,7 @@ namespace tic_tac_toe {
             gameStatus = GameStatus.PAUSE;
 
             gameoverLabel.Visible = false;
-            gameGrid = new GameGrid(canvas);
+            gameGrid = new GameGrid(startingPlayer, canvas);
             gameGrid.Gameover += gameGrid_Gameover;
             gameGrid.SwitchPlayer += gameGrid_SwitchPlayer;
             playerO = new AI(Player.O, gameGrid);
@@ -53,10 +76,18 @@ namespace tic_tac_toe {
 
             gameStatus = GameStatus.PLAY;
 
-            if (gameGrid.currentPlayer == Player.O) {
+            if (gameGrid.currentPlayer == Player.O && OisAI) {
                 KeyValuePair<int, int> temp = playerO.Move();
-                if (temp.Key != -1 && temp.Value != -1)
+                if (temp.Key != -1 && temp.Value != -1) {
                     gameGrid.Put(temp.Key, temp.Value);
+                }
+            }
+
+            if (gameGrid.currentPlayer == Player.X && XisAI) {
+                KeyValuePair<int, int> temp = playerX.Move();
+                if (temp.Key != -1 && temp.Value != -1) {
+                    gameGrid.Put(temp.Key, temp.Value);
+                }
             }
         }
       
@@ -69,10 +100,18 @@ namespace tic_tac_toe {
         }
         int i = 0;
         private void gameGrid_SwitchPlayer(object sender, EventArgs e) {
-            if (gameGrid.currentPlayer == Player.O) {
+            if (gameGrid.currentPlayer == Player.O && OisAI) {
                 KeyValuePair<int, int> temp = playerO.Move();
-                if (temp.Key != -1 && temp.Value != -1)
-                    gameGrid.Put(temp.Key, temp.Value);                
+                if (temp.Key != -1 && temp.Value != -1) {
+                    gameGrid.Put(temp.Key, temp.Value);
+                }                    
+            }
+
+            if (gameGrid.currentPlayer == Player.X && XisAI) {
+                KeyValuePair<int, int> temp = playerX.Move();
+                if (temp.Key != -1 && temp.Value != -1) {
+                    gameGrid.Put(temp.Key, temp.Value);
+                }
             }
         }
 
